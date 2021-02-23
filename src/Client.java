@@ -7,6 +7,7 @@ import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.stream.Collectors;
+
 import sep.tinee.net.message.Bye;
 import sep.tinee.net.message.Push;
 import sep.tinee.net.message.ReadReply;
@@ -71,14 +72,22 @@ import sep.tinee.net.message.ReadRequest;
  */
 public class Client {
 
-  String user;
-  String host;
-  int port;
+ private String user;
+ private String host;
+ private int port;
 
-  boolean printSplash = true;
+private boolean printSplash;
 
-  Client() {
-  }
+ public Client() {
+        this.printSplash = true;
+    }
+    /**
+    public Client(String username, String hostname, int portnumber) {
+         this.user = username;
+        this.host = hostname;
+        this.port = portnumber;
+     * @param args }
+     * @throws java.io.IOException*/
 
   public static void main(String[] args) throws IOException {
     String user = args[0];
@@ -88,7 +97,6 @@ public class Client {
     client.set(user, host, port);
     client.run();
   }
-
   public void set(String user, String host, int port) {
     this.user = user;
     this.host = host;
@@ -100,7 +108,6 @@ public class Client {
       value = "DM_DEFAULT_ENCODING",
       justification = "When reading console, ignore 'default encoding' warning")
   void run() throws IOException {
-
     BufferedReader reader = null;
     CLFormatter helper = null;
     try {
@@ -112,7 +119,7 @@ public class Client {
       }
       helper = new CLFormatter(this.host, this.port);
 
-      if (this.printSplash = true);
+      if (this.printSplash = true)
       {
         System.out.print(helper.formatSplash(this.user));
       }

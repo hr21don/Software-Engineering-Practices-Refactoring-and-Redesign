@@ -11,7 +11,10 @@ import sep.tinee.net.message.Message;
  */
 public class CLFormatter {
 
-  static ClientChannel chan;  // Client-side channel for talking to a Tinee server
+    /**
+     *
+     */
+    protected static ClientChannel chan;  // Client-side channel for talking to a Tinee server
 
   CLFormatter(String host, int port) {
     this.chan = new ClientChannel(host, port);
