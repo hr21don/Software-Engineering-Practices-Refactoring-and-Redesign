@@ -76,7 +76,7 @@ public class Client {
  private String host;
  private int port;
 
-private boolean printSplash;
+private final boolean printSplash;
 
  public Client() {
         this.printSplash = true;
@@ -97,6 +97,8 @@ private boolean printSplash;
     client.set(user, host, port);
     client.run();
   }
+
+   
   public void set(String user, String host, int port) {
     this.user = user;
     this.host = host;
@@ -119,12 +121,12 @@ private boolean printSplash;
       }
       helper = new CLFormatter(this.host, this.port);
 
-      if (this.printSplash = true)
+      if (this.printSplash)
       {
         System.out.print(helper.formatSplash(this.user));
       }
       loop(helper, reader);
-    } catch (Exception ex) {
+    } catch (Exception ex){
       throw new RuntimeException(ex);
     } finally {
       reader.close();
