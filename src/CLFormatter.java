@@ -18,6 +18,7 @@ public class CLFormatter {
 
   CLFormatter(String host, int port) {
     this.chan = new ClientChannel(host, port);
+    
   }
 
   /* Interact with Tinee server */
@@ -37,7 +38,6 @@ public class CLFormatter {
         + "Note:  Commands can be abbreviated to any prefix, "
         + "e.g., read [mytag] => re [mytag]\n";
   }
-
   static String formatMainMenuPrompt() {
     return "\n[Main] Enter command: "
         + "read [mytag], "
@@ -64,7 +64,7 @@ public class CLFormatter {
       b.append(String.format("%12d", i++));
       b.append("  ");
       b.append(x);
-    };
+    }
     return b.toString();
   }
 
@@ -73,13 +73,19 @@ public class CLFormatter {
     StringBuilder b = new StringBuilder("Read: #");
     b.append(tag);
     Iterator<String> it = read.iterator();
-    for (String user : users) {
-      b.append("\n");
-      b.append(String.format("%12s", user));
-      b.append("  ");
-      b.append(it.next());
-    };
+    users.stream().map((user) -> {
+        b.append("\n");
+        b.append(String.format("%12s", user));
+          return user;
+      }).map((_item) -> {
+          b.append("  ");
+          return _item;
+      }).forEachOrdered((_item) -> {
+          b.append(it.next());
+      });
     b.append("\n");
     return b.toString();
   }
+
+   
 }

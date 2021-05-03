@@ -29,8 +29,6 @@ import sep.tinee.net.message.ReadRequest;
  * @author Helitha
  */
 public class MainCommandList implements MainList {
-        /**rmatter clf = null;   
-    String user = null;
     /**
      *
      * @param reader
@@ -41,7 +39,7 @@ public class MainCommandList implements MainList {
     private final static String RESOURCE_PATH = "Resources/MessagesBundle";
     private final ResourceBundle strings; 
     
-    String state;  
+    String state = "";  
 
     // Holds the current draft data when in the "Drafting" state
     String draftTag = null;
@@ -81,7 +79,7 @@ public class MainCommandList implements MainList {
     }
     
     @Override
-    public void Read() {
+    public void read() {
        String[] rawArgs = null;
      try {
          // Read tines on server
@@ -97,29 +95,33 @@ public class MainCommandList implements MainList {
      }
           System.out.print(
               clf.formatRead(rawArgs[0], rep.users, rep.lines));
-          //To change body of generated methods, choose Tools | Templates.
+         //To change body of generated methods, choose Tools | Template
     }
 
     @Override
-    public void Manage() {
+    public void manage() {
         CLFormatter helper = clf;
         String cmd = null;
         state = "Drafting_State";
-       String[] rawArgs = null;
+        String[] rawArgs = null;
           draftTag = rawArgs[0];
-        //strings.getString("manage_tine").startsWith(cmd));
+       {
+          // Switch to "Drafting" state and start a new "draft"
+          state = strings.getString("Drafting_State");
+          draftTag = rawArgs[0];
+       }
         //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public void Exit() {
+    public void exit() {
           {       
           System.exit(0);
       }    
     }
 
     @Override
-    public void Line() {
+    public void line() {
           CLFormatter helper = clf;
           String raw;
           raw = null;
@@ -137,7 +139,7 @@ public class MainCommandList implements MainList {
     }
 
     @Override
-    public void Push() {
+    public void push() {
      try {
          // Send drafted tines to the server, and go back to "Main" state
          clf.chan.send(new Push(user, draftTag, draftLines));
@@ -147,18 +149,12 @@ public class MainCommandList implements MainList {
           state = strings.getString("Initial_State");
           draftTag = null;
     }
-    @Override
-    public void printoptions() {
-        if (state.equals(strings.getString("Initial_State"))) {
-        System.out.print(clf.formatMainMenuPrompt());
-         } else {  // state = "Drafting"
-      System.out.print(clf.
-            formatDraftingMenuPrompt(draftTag, draftLines));
-      } //To change body of generated methods, choose Tools | Templates.
-    }   
+    //@Override
+   // public void printoptions() { //Print User Options
+     //}   
     
     @Override
-    public void Undo()
+    public void undo()
     {  //CommandChooser CC = new CommandChooser();
        for (int i =0; i < draftLines.size(); i++)
        {
@@ -167,6 +163,12 @@ public class MainCommandList implements MainList {
               draftLines.remove(draftLines.get(i));  
           }
        }
+    }
+    
+    @Override
+    public String getState()
+    {
+        return state;
     }
   }
   

@@ -8,13 +8,11 @@
  *
  * @author Helitha
  */
-public interface MainList {
-      void read();
-      void manage();
-      void exit();
-      void line();
-      void push();
-      void undo();
-      String getState();
-}
+public class PushCommandList implements Command{
 
+    @Override
+    public void execute(MainList MainCom) {
+        MainCom.push(); //To change body of generated methods, choose Tools | Templates.
+    }
+    
+}

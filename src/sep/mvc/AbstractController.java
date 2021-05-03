@@ -47,7 +47,7 @@ public abstract class AbstractController {
    * @see sep.mvc.AbstractView#setController(sep.mvc.AbstractController)
    */
   protected AbstractController(final AbstractModel model,
-      final AbstractView view) {
+    final AbstractView view) {
     this.model = model;
     this.view = view;
     view.setController(this);

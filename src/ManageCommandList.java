@@ -15,7 +15,7 @@ public class ManageCommandList implements Command {
     //private MainList MCL = new MainList();
         @Override
         public void execute(MainList MainCom) {
-          MainCom.Manage(); //To change body of generated methods, choose Tools | Templates.
+          MainCom.manage(); //To change body of generated methods, choose Tools | Templates.
         }
     
 }   
