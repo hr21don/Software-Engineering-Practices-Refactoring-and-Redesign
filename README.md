@@ -18,3 +18,16 @@ Your organisation has also identified these features/extensions as requirements:
 * Support for internationalisation (i18n); e.g., UI messages in alternative languages.
 
 The command line client must support all existing and future functionality with gracefulhandling of user input errors (e.g., mistyped commands or invalid arguments). The UI should report usageerrors and continue running as expected, i.e., without crashing the session.
+
+------------------------------------------------------------------------
+This is the project README file. Here, you should describe your project.
+Tell the reader (someone who does not know anything about this project)
+all he/she needs to know. The comments should usually include at least:
+------------------------------------------------------------------------
+
+* PROJECT TITLE:
+* PURPOSE OF PROJECT:
+* VERSION or DATE:
+* HOW TO START THIS PROJECT:
+* AUTHORS:
+* USER INSTRUCTIONS:
